@@ -111,8 +111,7 @@
             <!-- Code Sample Slide -->
             <section>
                 <h2>Risk Analytics Pipeline</h2>
-                <pre><code class="python" data-line-numbers="1-2|4-6|8-12|14-15">
-import pandas as pd
+                <pre><code class="language-python" data-line-numbers="1-2|4-6|8-12|14-15">import pandas as pd
 import numpy as np
 
 # Load customer transaction data
@@ -127,8 +126,7 @@ def calculate_exposure(df):
     return df.groupby('customer_id')['risk_weighted_exposure'].sum()
 
 # Generate daily risk reports
-exposure_summary = calculate_exposure(transactions)
-                </code></pre>
+exposure_summary = calculate_exposure(transactions)</code></pre>
                 <p style="font-size: 0.7em; margin-top: 30px;">
                     Our automated risk analytics processes 15M+ transactions daily
                 </p>
@@ -232,7 +230,10 @@ exposure_summary = calculate_exposure(transactions)
             history: true,
             center: true,
             transition: 'slide',
-            plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+            highlight: {
+                highlightOnLoad: true
+            }
         });
     </script>
 </body>
