@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/black.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/monokai.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/javascript.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
@@ -111,7 +115,7 @@
             <!-- Code Sample Slide -->
             <section>
                 <h2>Risk Analytics Pipeline</h2>
-                <pre><code class="hljs python" data-line-numbers="1-2|4-6|8-12|14-15">import pandas as pd
+                <pre><code class="python">import pandas as pd
 import numpy as np
 
 # Load customer transaction data
@@ -126,7 +130,8 @@ def calculate_exposure(df):
     return df.groupby('customer_id')['risk_weighted_exposure'].sum()
 
 # Generate daily risk reports
-exposure_summary = calculate_exposure(transactions)</code></pre>
+exposure_summary = calculate_exposure(transactions)
+</code></pre>
                 <p style="font-size: 0.7em; margin-top: 30px;">
                     Our automated risk analytics processes 15M+ transactions daily
                 </p>
@@ -138,7 +143,7 @@ exposure_summary = calculate_exposure(transactions)</code></pre>
             <!-- Additional Code Slide with JavaScript -->
             <section>
                 <h2>API Integration Example</h2>
-                <pre><code class="hljs javascript" data-line-numbers>// Fetch real-time market data
+                <pre><code class="javascript">// Fetch real-time market data
 async function getMarketData() {
     const response = await fetch('/api/market-data');
     const data = await response.json();
@@ -149,7 +154,8 @@ async function getMarketData() {
     }, 0);
     
     return totalValue;
-}</code></pre>
+}
+</code></pre>
                 <aside class="notes">
                     Our API handles thousands of requests per second for real-time market data updates.
                 </aside>
@@ -243,6 +249,10 @@ async function getMarketData() {
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/highlight.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/notes/notes.js"></script>
     <script>
+        // Initialize highlight.js first
+        hljs.highlightAll();
+        
+        // Then initialize Reveal
         Reveal.initialize({
             hash: true,
             controls: true,
@@ -253,11 +263,14 @@ async function getMarketData() {
             plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
         });
         
-        // Ensure syntax highlighting is applied
+        // Highlight again after Reveal is ready
         Reveal.on('ready', () => {
-            document.querySelectorAll('pre code').forEach((block) => {
-                hljs.highlightElement(block);
-            });
+            hljs.highlightAll();
+        });
+        
+        // Highlight on slide change
+        Reveal.on('slidechanged', () => {
+            hljs.highlightAll();
         });
     </script>
 </body>
