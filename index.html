@@ -111,7 +111,7 @@
             <!-- Code Sample Slide -->
             <section>
                 <h2>Risk Analytics Pipeline</h2>
-                <pre><code class="language-python" data-line-numbers="1-2|4-6|8-12|14-15">import pandas as pd
+                <pre><code class="hljs python" data-line-numbers="1-2|4-6|8-12|14-15">import pandas as pd
 import numpy as np
 
 # Load customer transaction data
@@ -132,6 +132,26 @@ exposure_summary = calculate_exposure(transactions)</code></pre>
                 </p>
                 <aside class="notes">
                     This is a simplified version of our risk analytics pipeline. The actual system uses distributed computing and real-time streaming for immediate fraud detection.
+                </aside>
+            </section>
+
+            <!-- Additional Code Slide with JavaScript -->
+            <section>
+                <h2>API Integration Example</h2>
+                <pre><code class="hljs javascript" data-line-numbers>// Fetch real-time market data
+async function getMarketData() {
+    const response = await fetch('/api/market-data');
+    const data = await response.json();
+    
+    // Calculate portfolio value
+    const totalValue = data.holdings.reduce((sum, stock) => {
+        return sum + (stock.shares * stock.price);
+    }, 0);
+    
+    return totalValue;
+}</code></pre>
+                <aside class="notes">
+                    Our API handles thousands of requests per second for real-time market data updates.
                 </aside>
             </section>
 
@@ -230,10 +250,14 @@ exposure_summary = calculate_exposure(transactions)</code></pre>
             history: true,
             center: true,
             transition: 'slide',
-            plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
-            highlight: {
-                highlightOnLoad: true
-            }
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+        });
+        
+        // Ensure syntax highlighting is applied
+        Reveal.on('ready', () => {
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
         });
     </script>
 </body>
